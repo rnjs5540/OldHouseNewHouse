@@ -3,6 +3,7 @@ package GLOW.OldHouseNewHouse.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Getter
 @Setter

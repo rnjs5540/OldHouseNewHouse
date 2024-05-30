@@ -11,3 +11,4 @@ public class HouseApplyResponseDto {
     private String applyPhotoUrl;
     private Long houseId;
 }
+
