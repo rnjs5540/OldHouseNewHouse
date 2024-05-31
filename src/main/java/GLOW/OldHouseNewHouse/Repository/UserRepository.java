@@ -1,4 +1,4 @@
-package GLOW.OldHouseNewHouse.Repository;
+package GLOW.OldHouseNewHouse.repository;
 
 import GLOW.OldHouseNewHouse.Data.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

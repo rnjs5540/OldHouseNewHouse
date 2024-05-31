@@ -1,10 +1,12 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.dto.HouseApplyRequestDto;
-import GLOW.OldHouseNewHouse.dto.HouseApplyResponseDto;
-import GLOW.OldHouseNewHouse.entity.House;
-import GLOW.OldHouseNewHouse.entity.HouseApply;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseApplyRequestDto;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseApplyResponseDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
+import GLOW.OldHouseNewHouse.Data.Entity.HouseApply;
+import GLOW.OldHouseNewHouse.Data.Entity.User;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
+import GLOW.OldHouseNewHouse.repository.UserRepository;
 import GLOW.OldHouseNewHouse.serivce.HouseApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class HouseApplyController {
     public RedirectView addHouseApply(@RequestBody HouseApplyRequestDto houseApplyRequestDto) {
         HouseApply houseApply = HouseApply.builder()
                 .house(houseRepository.findById(houseApplyRequestDto.getHouseId()).orElse(null))
-                .user(userRepository.findById(houseApplyRequest.getUserId()))
+                .user(userRepository.findById(houseApplyRequestDto.getUserId()).orElse(null))
                 .applyReason(houseApplyRequestDto.getApplyReason())
                 .appealPhotoUrl(houseApplyRequestDto.getAppealPhotoUrl())
                 .build();
@@ -39,8 +41,8 @@ public class HouseApplyController {
     public HouseApplyResponseDto getHouseApply(@PathVariable Long applyId) {
         HouseApply houseApply = houseApplyService.getHouseApply(applyId);
         House house = houseRepository.findById(applyId).orElse(null);
-        User owner = userRepository.findById(house.getOwnerId());
-        User user = userRepository.findById(houseApply.getHouse().getUserId());
+        User owner = userRepository.findById(house.getOwnerId()).orElse(null);
+        User user = userRepository.findById(houseApply.getHouse().getUserId()).orElse(null);
 
         return HouseApplyResponseDto.builder()
                 .ownerName(owner.getName())

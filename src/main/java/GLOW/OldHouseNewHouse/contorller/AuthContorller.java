@@ -1,4 +1,4 @@
-package GLOW.OldHouseNewHouse.Controller;
+package GLOW.OldHouseNewHouse.contorller;
 
 import GLOW.OldHouseNewHouse.Data.Dto.Auth.Res.AuthGetLoginRes;
 import GLOW.OldHouseNewHouse.Service.AuthService;

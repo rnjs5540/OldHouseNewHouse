@@ -1,6 +1,6 @@
 package GLOW.OldHouseNewHouse.serivce;
 
-import GLOW.OldHouseNewHouse.entity.HouseApply;
+import GLOW.OldHouseNewHouse.Data.Entity.HouseApply;
 import GLOW.OldHouseNewHouse.repository.HouseApplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
