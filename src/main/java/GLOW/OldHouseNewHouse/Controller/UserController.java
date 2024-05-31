@@ -15,12 +15,12 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/mypage/{id}")
+    @GetMapping("/mypage/{userId}")
     public ResponseEntity<UserGetRes> getUser(@PathVariable Long userId){
         return userService.getUser(userId);
     }
 
-    @PatchMapping("/mypage/{id}")
+    @PatchMapping("/mypage/{userId}")
     public ResponseEntity<UserGetRes> patchUser(@RequestBody UserPatchReq userPatchReq,@PathVariable Long userId){
         return userService.patchUser(userPatchReq,userId);
     }
