@@ -1,6 +1,6 @@
 package GLOW.OldHouseNewHouse.repository;
 
-import GLOW.OldHouseNewHouse.Data.Entity.HouseApply;
+import GLOW.OldHouseNewHouse.data.entity.HouseApply;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

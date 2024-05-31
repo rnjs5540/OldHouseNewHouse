@@ -1,4 +1,4 @@
-package GLOW.OldHouseNewHouse.Data.Entity;
+package GLOW.OldHouseNewHouse.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,7 +21,7 @@ public class HouseApply {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Users users;
 
     @Column(name = "apply_reason", nullable = false)
     private String applyReason;

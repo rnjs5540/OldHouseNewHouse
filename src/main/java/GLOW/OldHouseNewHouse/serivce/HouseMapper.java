@@ -1,7 +1,7 @@
 package GLOW.OldHouseNewHouse.serivce;
 
-import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
-import GLOW.OldHouseNewHouse.Data.Entity.House;
+import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.data.entity.House;
 import org.springframework.stereotype.Component;
 
 @Component

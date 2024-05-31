@@ -1,11 +1,9 @@
 package GLOW.OldHouseNewHouse.serivce;
 
-import GLOW.OldHouseNewHouse.Data.Dto.User.Req.UserPatchReq;
-import GLOW.OldHouseNewHouse.Data.Dto.User.Res.UserGetRes;
-import GLOW.OldHouseNewHouse.Data.Entity.User;
-import GLOW.OldHouseNewHouse.repository.UserRepository;
+import GLOW.OldHouseNewHouse.data.dto.user.req.UserPatchReq;
+import GLOW.OldHouseNewHouse.data.dto.user.res.UserGetRes;
+import GLOW.OldHouseNewHouse.data.entity.Users;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,27 +14,27 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final GLOW.OldHouseNewHouse.repository.UsersRepository usersRepository;
 
     public ResponseEntity<UserGetRes> getUser(Long userId){
-        User user=userRepository.findById(userId).orElse(null);
-        if(user == null)
+        Users users = usersRepository.findById(userId).orElse(null);
+        if(users == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
-        return new ResponseEntity<>(new UserGetRes(user), HttpStatus.OK);
+        return new ResponseEntity<>(new UserGetRes(users), HttpStatus.OK);
     }
 
     public void patchUser(UserPatchReq userPatchReq,Long userId){
-        User user = userRepository.findById(userId).orElse(null);
+        Users users = usersRepository.findById(userId).orElse(null);
 
-        if(user == null)
+        if(users == null)
             return;
 
-        user.setEmail(userPatchReq.getEmail());
-        user.setProfileImgUrl(userPatchReq.getProfileImgUrl());
-        user.setUserCallNum(userPatchReq.getUserNum());
+        users.setEmail(userPatchReq.getEmail());
+        users.setProfileImgUrl(userPatchReq.getProfileImgUrl());
+        users.setUserCallNum(userPatchReq.getUserNum());
 
-        userRepository.save(user);
+        usersRepository.save(users);
 
     }
 

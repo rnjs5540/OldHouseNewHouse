@@ -1,6 +1,6 @@
-package GLOW.OldHouseNewHouse.Data.Entity;
+package GLOW.OldHouseNewHouse.data.entity;
 
-import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,7 +50,7 @@ public class House {
     @Column(name = "detail_loc", nullable = false)
     private String detailLoc;
 
-    @Column(name = "is_okay", nullable = false)
+    @Column(name = "is_okay")
     private Boolean isOkay;
 
     @Column(name = "gate", nullable = false)

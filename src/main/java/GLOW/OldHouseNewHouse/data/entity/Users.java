@@ -1,4 +1,4 @@
-package GLOW.OldHouseNewHouse.Data.Entity;
+package GLOW.OldHouseNewHouse.data.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Getter
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +40,7 @@ public class User {
     private Long age;
 
     @Builder
-    public User(Long id, String refreshToken, String email) {
+    public Users(Long id, String refreshToken, String email) {
         this.id = id;
         this.refreshToken = refreshToken;
         this.email = email;

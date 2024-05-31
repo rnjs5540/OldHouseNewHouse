@@ -1,6 +1,5 @@
-package GLOW.OldHouseNewHouse.Data.Dto.Auth.Res;
+package GLOW.OldHouseNewHouse.data.dto.Auth.Res;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

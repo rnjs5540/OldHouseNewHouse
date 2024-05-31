@@ -1,9 +1,8 @@
 package GLOW.OldHouseNewHouse.serivce;
 
 import GLOW.OldHouseNewHouse.Config.Jwt.JwtTokenProvider;
-import GLOW.OldHouseNewHouse.Data.Dto.Auth.Res.AuthGetLoginRes;
-import GLOW.OldHouseNewHouse.Data.Entity.User;
-import GLOW.OldHouseNewHouse.repository.UserRepository;
+import GLOW.OldHouseNewHouse.data.dto.Auth.Res.AuthGetLoginRes;
+import GLOW.OldHouseNewHouse.data.entity.Users;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,7 @@ public class AuthService {
     @Value("${kakao.auth.redirect_uri}")
     private String redirect_uri;
 
-    private final UserRepository userRepository;
+    private final GLOW.OldHouseNewHouse.repository.UsersRepository usersRepository;
 
     private final UserService userService;
 
@@ -38,25 +37,25 @@ public class AuthService {
     }
 
     public ResponseEntity<AuthGetLoginRes> login(Authentication authentication) {
-        User user = userRepository.findById(Long.valueOf(authentication.getName())).orElse(null);
+        Users users = usersRepository.findById(Long.valueOf(authentication.getName())).orElse(null);
 
-        if(user == null)
+        if(users == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
-        String accessToken = jwtTokenProvider.createAccessToken(user.getId());
-        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, user.getRefreshToken()), HttpStatus.OK);
+        String accessToken = jwtTokenProvider.createAccessToken(users.getId());
+        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, users.getRefreshToken()), HttpStatus.OK);
     }
 
     public ResponseEntity<HttpStatus> logout(Authentication authentication){
 
-        User user = userRepository.findById(Long.valueOf(authentication.getName())).orElse(null);
+        Users users = usersRepository.findById(Long.valueOf(authentication.getName())).orElse(null);
 
-        if(user == null)
+        if(users == null)
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 
-        user.setRefreshToken(null);
+        users.setRefreshToken(null);
 
-        userRepository.save(user);
+        usersRepository.save(users);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -67,18 +66,18 @@ public class AuthService {
         Long id = element.getAsJsonObject().get("id").getAsLong();
 
 
-        User user = userRepository.findById(id).orElse(null);
+        Users users = usersRepository.findById(id).orElse(null);
 
-        if(user == null)
+        if(users == null)
             return register(kakaoAccessToken,id);
 
         String accessToken = jwtTokenProvider.createAccessToken(id);
         String refreshToken = jwtTokenProvider.createRefreshToken(id);
 
-        user.setRefreshToken(refreshToken);
+        users.setRefreshToken(refreshToken);
 
 
-        userRepository.save(user);
+        usersRepository.save(users);
 
         return new ResponseEntity<>(new AuthGetLoginRes(accessToken, refreshToken), HttpStatus.OK);
     }
@@ -90,13 +89,13 @@ public class AuthService {
         String accessToken = jwtTokenProvider.createAccessToken(id);
         String refreshToken = jwtTokenProvider.createRefreshToken(id);
 
-        User user = User.builder()
+        Users users = Users.builder()
                 .id(id)
                 .email(email)
                 .refreshToken(refreshToken)
                 .build();
 
-        userRepository.save(user);
+        usersRepository.save(users);
 
         return new ResponseEntity<>(new AuthGetLoginRes(accessToken, refreshToken), HttpStatus.CREATED);
     }
