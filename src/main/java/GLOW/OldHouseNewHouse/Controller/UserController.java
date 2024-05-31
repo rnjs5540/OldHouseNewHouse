@@ -16,13 +16,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/mypage/{id}")
-    public ResponseEntity<UserGetRes> getUser(Authentication authentication){
-        return userService.getUser(authentication);
+    public ResponseEntity<UserGetRes> getUser(@PathVariable Long userId){
+        return userService.getUser(userId);
     }
 
     @PatchMapping("/mypage/{id}")
-    public ResponseEntity<UserGetRes> patchUser(@RequestBody UserPatchReq userPatchReq,Authentication authentication){
-        return userService.patchUser(userPatchReq,authentication);
+    public ResponseEntity<UserGetRes> patchUser(@RequestBody UserPatchReq userPatchReq,@PathVariable Long userId){
+        return userService.patchUser(userPatchReq,userId);
     }
 
 }

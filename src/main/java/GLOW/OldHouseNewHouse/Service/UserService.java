@@ -18,16 +18,16 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public ResponseEntity<UserGetRes> getUser(Authentication authentication){
-        User user=userRepository.findById(Long.valueOf(authentication.getName())).orElse(null);
+    public ResponseEntity<UserGetRes> getUser(Long userId){
+        User user=userRepository.findById(userId).orElse(null);
         if(user == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         return new ResponseEntity<>(new UserGetRes(user), HttpStatus.OK);
     }
 
-    public ResponseEntity<UserGetRes> patchUser(UserPatchReq userPatchReq,Authentication authentication){
-        User user = userRepository.findById(Long.valueOf(authentication.getName())).orElse(null);
+    public ResponseEntity<UserGetRes> patchUser(UserPatchReq userPatchReq,Long userId){
+        User user = userRepository.findById(userId).orElse(null);
 
         if(user == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
