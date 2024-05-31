@@ -2,11 +2,10 @@ package GLOW.OldHouseNewHouse.contorller;
 
 import GLOW.OldHouseNewHouse.Data.Dto.User.Req.UserPatchReq;
 import GLOW.OldHouseNewHouse.Data.Dto.User.Res.UserGetRes;
-import GLOW.OldHouseNewHouse.Service.UserService;
+import GLOW.OldHouseNewHouse.serivce.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController

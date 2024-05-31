@@ -1,9 +1,9 @@
-package GLOW.OldHouseNewHouse.Service;
+package GLOW.OldHouseNewHouse.serivce;
 
 import GLOW.OldHouseNewHouse.Config.Jwt.JwtTokenProvider;
 import GLOW.OldHouseNewHouse.Data.Dto.Auth.Res.AuthGetLoginRes;
 import GLOW.OldHouseNewHouse.Data.Entity.User;
-import GLOW.OldHouseNewHouse.Repository.UserRepository;
+import GLOW.OldHouseNewHouse.repository.UserRepository;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;

@@ -1,9 +1,9 @@
-package GLOW.OldHouseNewHouse.Service;
+package GLOW.OldHouseNewHouse.serivce;
 
 import GLOW.OldHouseNewHouse.Data.Dto.User.Req.UserPatchReq;
 import GLOW.OldHouseNewHouse.Data.Dto.User.Res.UserGetRes;
 import GLOW.OldHouseNewHouse.Data.Entity.User;
-import GLOW.OldHouseNewHouse.Repository.UserRepository;
+import GLOW.OldHouseNewHouse.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class UserService {
 
         user.setEmail(userPatchReq.getEmail());
         user.setProfileImgUrl(userPatchReq.getProfileImgUrl());
-        user.setUserNum(userPatchReq.getUserNum());
+        user.setUserCallNum(userPatchReq.getUserNum());
 
         userRepository.save(user);
 

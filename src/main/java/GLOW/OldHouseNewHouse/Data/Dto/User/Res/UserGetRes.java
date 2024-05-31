@@ -17,6 +17,6 @@ public class UserGetRes {
     public UserGetRes(User user) {
         this.email = user.getEmail();
         this.profileImgUrl = user.getProfileImgUrl();
-        this.userNum = user.getUserNum();
+        this.userNum = user.getUserCallNum();
     }
 }

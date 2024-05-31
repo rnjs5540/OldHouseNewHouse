@@ -1,8 +1,7 @@
 package GLOW.OldHouseNewHouse.contorller;
 
 import GLOW.OldHouseNewHouse.Data.Dto.Auth.Res.AuthGetLoginRes;
-import GLOW.OldHouseNewHouse.Service.AuthService;
-import io.swagger.v3.oas.annotations.Parameter;
+import GLOW.OldHouseNewHouse.serivce.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
