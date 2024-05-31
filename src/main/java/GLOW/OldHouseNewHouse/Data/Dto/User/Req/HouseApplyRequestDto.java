@@ -1,4 +1,4 @@
-package GLOW.OldHouseNewHouse.dto;
+package GLOW.OldHouseNewHouse.Data.Dto.User.Req;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

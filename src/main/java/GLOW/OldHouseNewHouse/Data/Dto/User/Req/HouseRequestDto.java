@@ -1,12 +1,11 @@
-package GLOW.OldHouseNewHouse.dto;
+package GLOW.OldHouseNewHouse.Data.Dto.User.Req;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class HouseDTO {
+public class HouseRequestDto {
     public enum Gate {
         // 학교 기준 문의 위치
         // 동문, 서문, 정문, 북문, 텍문, 쪽문

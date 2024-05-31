@@ -1,6 +1,6 @@
-package GLOW.OldHouseNewHouse.entity;
+package GLOW.OldHouseNewHouse.Data.Entity;
 
-import GLOW.OldHouseNewHouse.dto.HouseDTO;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,38 +26,38 @@ public class House {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "repair")
+    @Column(name = "repair", nullable = false)
     private String repair;
 
-    @Column(name = "repair_photo_url")
+    @Column(name = "repair_photo_url", nullable = false)
     private String repairPhotoUrl;
 
-    @Column(name = "stay_date")
+    @Column(name = "stay_date", nullable = false)
     private Long stayDate;
 
-    @Column(name = "area")
+    @Column(name = "area", nullable = false)
     private Double area;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "latitude")
+    @Column(name = "latitude", nullable = false)
     private Long latitude;
 
-    @Column(name = "longitude")
+    @Column(name = "longitude", nullable = false)
     private Long longitude;
 
-    @Column(name = "detail_loc")
+    @Column(name = "detail_loc", nullable = false)
     private String detailLoc;
 
-    @Column(name = "is_okay")
+    @Column(name = "is_okay", nullable = false)
     private Boolean isOkay;
 
-    @Column(name = "gate")
-    private HouseDTO.Gate gate;
+    @Column(name = "gate", nullable = false)
+    private HouseRequestDto.Gate gate;
 
     public House(Long ownerId, Long userId, String repair, String repairPhotoUrl, Long stayDate, Double area, String description,
-                 Long latitude, Long longitude, String detailLoc, HouseDTO.Gate gate){
+                 Long latitude, Long longitude, String detailLoc, HouseRequestDto.Gate gate){
         this.ownerId = ownerId;
         this.userId = userId;
         this.repair = repair;

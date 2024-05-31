@@ -1,7 +1,7 @@
 package GLOW.OldHouseNewHouse.serivce;
 
-import GLOW.OldHouseNewHouse.dto.HouseDTO;
-import GLOW.OldHouseNewHouse.entity.House;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +19,9 @@ public class HouseService {
     @Autowired
     private final HouseMapper houseMapper = new HouseMapper();
 
-    public Long registerHouse(HouseDTO houseDTO) {
+    public Long registerHouse(HouseRequestDto houseRequestDto) {
         // HouseDTO에서 필요한 정보를 가지고 House 엔티티를 생성
-        House registerHouse = houseMapper.toEntity(houseDTO);
+        House registerHouse = houseMapper.toEntity(houseRequestDto);
         House save = houseRepository.save(registerHouse);
         // 생성된 엔티티를 데이터베이스에 저장
         return save.getHouseId();
@@ -38,7 +38,7 @@ public class HouseService {
 
 
     @Transactional
-    public void updateHouse(Long houseId, HouseDTO house) {
+    public void updateHouse(Long houseId, HouseRequestDto house) {
         House findHouse = houseRepository.findById(houseId).orElse(null);
         if (findHouse == null) {
             return;

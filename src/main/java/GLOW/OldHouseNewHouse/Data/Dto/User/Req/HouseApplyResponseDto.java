@@ -1,4 +1,4 @@
-package GLOW.OldHouseNewHouse.dto;
+package GLOW.OldHouseNewHouse.Data.Dto.User.Req;
 
 import lombok.Builder;
 
@@ -6,7 +6,7 @@ import lombok.Builder;
 public class HouseApplyResponseDto {
     private String ownerName;
     private String userName;
-    private int userAge;
+    private Long userAge;
     private String applyReason;
     private String applyPhotoUrl;
     private Long houseId;

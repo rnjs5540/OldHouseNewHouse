@@ -1,14 +1,14 @@
 package GLOW.OldHouseNewHouse.serivce;
 
-import GLOW.OldHouseNewHouse.dto.HouseDTO;
-import GLOW.OldHouseNewHouse.entity.House;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HouseMapper {
 
-    public HouseDTO toDTO(House house) {
-        return new HouseDTO(
+    public HouseRequestDto toDTO(House house) {
+        return new HouseRequestDto(
                 house.getOwnerId(),
                 house.getUserId(),
                 house.getRepair(),
@@ -24,19 +24,19 @@ public class HouseMapper {
         );
     }
 
-    public House toEntity(HouseDTO houseDTO) {
+    public House toEntity(HouseRequestDto houseRequestDto) {
         return new House(
-                houseDTO.getOwnerId(),
-                houseDTO.getUserId(),
-                houseDTO.getRepair(),
-                houseDTO.getRepairPhotoUrl(),
-                houseDTO.getStayDate(),
-                houseDTO.getArea(),
-                houseDTO.getDescription(),
-                houseDTO.getLatitude(),
-                houseDTO.getLongitude(),
-                houseDTO.getDetailLoc(),
-                houseDTO.getGate()
+                houseRequestDto.getOwnerId(),
+                houseRequestDto.getUserId(),
+                houseRequestDto.getRepair(),
+                houseRequestDto.getRepairPhotoUrl(),
+                houseRequestDto.getStayDate(),
+                houseRequestDto.getArea(),
+                houseRequestDto.getDescription(),
+                houseRequestDto.getLatitude(),
+                houseRequestDto.getLongitude(),
+                houseRequestDto.getDetailLoc(),
+                houseRequestDto.getGate()
         );
     }
 }

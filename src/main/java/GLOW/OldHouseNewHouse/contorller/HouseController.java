@@ -1,7 +1,7 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.dto.HouseDTO;
-import GLOW.OldHouseNewHouse.entity.House;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
 import GLOW.OldHouseNewHouse.serivce.HouseService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +23,9 @@ public class HouseController {
 
     @ResponseBody
     @PostMapping("/house")
-    public RedirectView addHouse(@RequestBody HouseDTO house) {
-        HouseService HS = new HouseService(houseRepository);
+    public RedirectView addHouse(@RequestBody HouseRequestDto house) {
         // HouseService를 이용해서 house를 저장
-        Long tempId = HS.registerHouse(house);
+        Long tempId = houseService.registerHouse(house);
         return new RedirectView("/house/" + tempId);
     }
 
@@ -55,7 +54,7 @@ public class HouseController {
     //정보 없으면 요청 못하도록 프론트한데 요구해야 겠음.
     @ResponseBody
     @PutMapping("/house/{houseId}")
-    public RedirectView updateHouse(@PathVariable Long houseId, @RequestBody HouseDTO house) {
+    public RedirectView updateHouse(@PathVariable Long houseId, @RequestBody HouseRequestDto house) {
         HouseService HS = new HouseService(houseRepository);
         // HouseService를 이용해서 house를 수정
         HS.updateHouse(houseId, house);
