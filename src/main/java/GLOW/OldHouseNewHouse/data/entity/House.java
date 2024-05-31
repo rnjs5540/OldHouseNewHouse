@@ -1,13 +1,10 @@
 package GLOW.OldHouseNewHouse.data.entity;
 
 import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
-import jakarta.persistence.Entity;
+import GLOW.OldHouseNewHouse.data.entity.Users;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
 import lombok.Setter;
 
 @Entity
@@ -20,11 +17,13 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long houseId;
 
-    @Column(name = "owner_id", nullable = false)
-    private Long ownerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private Users owner;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users user;
 
     @Column(name = "repair", nullable = false)
     private String repair;
@@ -50,16 +49,15 @@ public class House {
     @Column(name = "detail_loc", nullable = false)
     private String detailLoc;
 
-    @Column(name = "is_okay")
+    @Column(name = "is_okay", nullable = true)
     private Boolean isOkay;
 
     @Column(name = "gate", nullable = false)
     private HouseRequestDto.Gate gate;
 
-    public House(Long ownerId, Long userId, String repair, String repairPhotoUrl, Long stayDate, Double area, String description,
+    public House(Users owner, String repair, String repairPhotoUrl, Long stayDate, Double area, String description,
                  Long latitude, Long longitude, String detailLoc, HouseRequestDto.Gate gate){
-        this.ownerId = ownerId;
-        this.userId = userId;
+        this.owner = owner;
         this.repair = repair;
         this.repairPhotoUrl = repairPhotoUrl;
         this.stayDate = stayDate;

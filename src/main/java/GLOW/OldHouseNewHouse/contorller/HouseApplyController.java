@@ -40,8 +40,8 @@ public class HouseApplyController {
     public HouseApplyResponseDto getHouseApply(@PathVariable Long applyId) {
         HouseApply houseApply = houseApplyService.getHouseApply(applyId);
         House house = houseRepository.findById(applyId).orElse(null);
-        Users owner = usersRepository.findById(house.getOwnerId()).orElse(null);
-        Users users = usersRepository.findById(houseApply.getHouse().getUserId()).orElse(null);
+        Users owner = usersRepository.findById(house.getOwner().getId()).orElse(null);
+        Users users = usersRepository.findById(houseApply.getHouse().getUser().getId()).orElse(null);
 
         return HouseApplyResponseDto.builder()
                 .ownerName(owner.getName())
