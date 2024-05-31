@@ -2,6 +2,7 @@ package GLOW.OldHouseNewHouse.contorller;
 
 import GLOW.OldHouseNewHouse.dto.HouseApplyRequestDto;
 import GLOW.OldHouseNewHouse.dto.HouseApplyResponseDto;
+import GLOW.OldHouseNewHouse.entity.House;
 import GLOW.OldHouseNewHouse.entity.HouseApply;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
 import GLOW.OldHouseNewHouse.serivce.HouseApplyService;
@@ -37,8 +38,8 @@ public class HouseApplyController {
     @GetMapping("/{applyId}")
     public HouseApplyResponseDto getHouseApply(@PathVariable Long applyId) {
         HouseApply houseApply = houseApplyService.getHouseApply(applyId);
-
-        User owner = userRepository.findById(houseApply.getHouse().getOwnerId());
+        House house = houseRepository.findById(applyId).orElse(null);
+        User owner = userRepository.findById(house.getOwnerId());
         User user = userRepository.findById(houseApply.getHouse().getUserId());
 
         return HouseApplyResponseDto.builder()

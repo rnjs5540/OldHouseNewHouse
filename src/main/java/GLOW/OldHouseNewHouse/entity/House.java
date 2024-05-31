@@ -35,7 +35,7 @@ public class House {
     @Column(name = "stay_date")
     private Long stayDate;
 
-    @Column(name = "area")
+    @Column(name = "area")u
     private Double area;
 
     @Column(name = "description")

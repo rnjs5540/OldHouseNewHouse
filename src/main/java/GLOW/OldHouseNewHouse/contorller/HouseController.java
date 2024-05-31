@@ -24,9 +24,8 @@ public class HouseController {
     @ResponseBody
     @PostMapping("/house")
     public RedirectView addHouse(@RequestBody HouseDTO house) {
-        HouseService HS = new HouseService(houseRepository);
         // HouseService를 이용해서 house를 저장
-        Long tempId = HS.registerHouse(house);
+        Long tempId = houseService.registerHouse(house);
         return new RedirectView("/house/" + tempId);
     }
 

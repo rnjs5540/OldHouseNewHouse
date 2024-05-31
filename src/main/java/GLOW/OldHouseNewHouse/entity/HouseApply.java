@@ -26,7 +26,7 @@ public class HouseApply {
     @Column(name = "apply_reason", nullable = false)
     private String applyReason;
 
-    @Column(name = "appeal_photo_url", nullable = true)
+    @Column(name = "appeal_photo_url")
     private String appealPhotoUrl;
 
     @Column(name = "is_okay", nullable = false)
