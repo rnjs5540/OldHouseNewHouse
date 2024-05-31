@@ -21,8 +21,14 @@ public class HouseService {
     private final HouseMapper houseMapper = new HouseMapper();
 
     public Long registerHouse(HouseRequestDto houseRequestDto) {
+        House registerHouse;
         // HouseDTO에서 필요한 정보를 가지고 House 엔티티를 생성
-        House registerHouse = houseMapper.toEntity(houseRequestDto);
+        try {
+            registerHouse = houseMapper.toEntity(houseRequestDto);
+        }catch(Exception e){
+            return null;
+        }
+
         House save = houseRepository.save(registerHouse);
         // 생성된 엔티티를 데이터베이스에 저장
         return save.getHouseId();

@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.net.URI;
 import java.util.List;
 
 @Slf4j
@@ -23,11 +25,25 @@ public class HouseController {
 
     @ResponseBody
     @PostMapping("/house")
-    public RedirectView addHouse(@RequestBody HouseRequestDto house) {
-        // HouseService를 이용해서 house를 저장
+    public ResponseEntity<?> addHouse(@RequestBody HouseRequestDto house) {
         Long tempId = houseService.registerHouse(house);
-        return new RedirectView("/house/" + tempId);
+        if (tempId == null) {
+            log.error("house 등록 실패! Users 데이터가 DB 미존재. house: {}", house);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("House 등록에 실패했습니다.");
+        }
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/house/" + tempId)).build();
     }
+
+//    public RedirectView addHouse(@RequestBody HouseRequestDto house) {
+//        // HouseService를 이용해서 house를 저장
+//        Long tempId = houseService.registerHouse(house);
+//        if(tempId == null) {
+//            log.error("house 등록 실패! Users 데이터가 DB 미존재. house: {}", house);
+//
+//            return new RedirectView("/house");
+//        }
+//        return new RedirectView("/house/" + tempId);
+//    }
 
     @ResponseBody
     @GetMapping("/house")
