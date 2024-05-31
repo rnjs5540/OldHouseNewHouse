@@ -26,11 +26,11 @@ public class UserService {
         return new ResponseEntity<>(new UserGetRes(user), HttpStatus.OK);
     }
 
-    public ResponseEntity<UserGetRes> patchUser(UserPatchReq userPatchReq,Long userId){
+    public void patchUser(UserPatchReq userPatchReq,Long userId){
         User user = userRepository.findById(userId).orElse(null);
 
         if(user == null)
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return;
 
         user.setEmail(userPatchReq.getEmail());
         user.setProfileImgUrl(userPatchReq.getProfileImgUrl());
@@ -38,7 +38,6 @@ public class UserService {
 
         userRepository.save(user);
 
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
