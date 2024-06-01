@@ -7,8 +7,7 @@ import lombok.Getter;
 @Getter
 public class HouseApplyRequestDto {
     private Long houseId;
-    private Long userId;
+    private Long ownerId;  // jwt로 유저식별하면 이것도 없어도될지도?
     private String applyReason;
-    private String applyPhotoUrl;
 }
 

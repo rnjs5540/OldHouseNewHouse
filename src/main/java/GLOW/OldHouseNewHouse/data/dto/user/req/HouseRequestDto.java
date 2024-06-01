@@ -13,7 +13,7 @@ public class HouseRequestDto {
     }
 
     private Long ownerId;
-//    private Long userId;
+    private Long userId;
     private String repair;
     private String repairPhotoUrl;
     private Long stayDate;
@@ -22,6 +22,5 @@ public class HouseRequestDto {
     private Long latitude;
     private Long longitude;
     private String detailLoc;
-//    private Boolean isOkay;
     private Gate gate;
 }
