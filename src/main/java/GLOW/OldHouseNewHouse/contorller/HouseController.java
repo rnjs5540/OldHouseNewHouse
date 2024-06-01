@@ -1,10 +1,17 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.data.dto.user.req.HousePostReq;
+import GLOW.OldHouseNewHouse.data.dto.user.req.HousePutReq;
+import GLOW.OldHouseNewHouse.data.dto.user.res.HouseResponseDto;
+import GLOW.OldHouseNewHouse.data.dto.user.res.UserGetRes;
 import GLOW.OldHouseNewHouse.data.entity.House;
+import GLOW.OldHouseNewHouse.data.entity.Users;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
+import GLOW.OldHouseNewHouse.repository.UsersRepository;
 import GLOW.OldHouseNewHouse.serivce.HouseService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,60 +24,80 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class HouseController {
-    @Autowired
-    HouseRepository houseRepository;
-    @Autowired
-    HouseService houseService;
+
+    private final HouseRepository houseRepository;
+    private final HouseService houseService;
+    private final UsersRepository usersRepository;
 
     @ResponseBody
     @PostMapping("/house")
-    public ResponseEntity<?> addHouse(@RequestBody HouseRequestDto house) {
+    public RedirectView addHouse(@RequestBody HousePostReq housePostReq) {
+        House house = House.builder()
+                .owner(usersRepository.findById(housePostReq.getOwnerId()).orElse(null))
+                .title(housePostReq.getTitle())
+                .repair(housePostReq.getRepair())
+                .repairPhotoUrl(housePostReq.getRepairPhoto())
+                .description(housePostReq.getDescription())
+                .stayDate(housePostReq.getStayDate())
+                .area(housePostReq.getArea())
+                .detailLoc(housePostReq.getDetailLoc())
+                .gate(housePostReq.getGate())
+                .build();
+
         Long tempId = houseService.registerHouse(house);
-        if (tempId == null) {
-            log.error("house 등록 실패! Users 데이터가 DB 미존재. house: {}", house);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("House 등록에 실패했습니다.");
-        }
-        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/house/" + tempId)).build();
+
+        return new RedirectView("/house/" + tempId);
     }
 
-//    public RedirectView addHouse(@RequestBody HouseRequestDto house) {
-//        // HouseService를 이용해서 house를 저장
-//        Long tempId = houseService.registerHouse(house);
-//        if(tempId == null) {
-//            log.error("house 등록 실패! Users 데이터가 DB 미존재. house: {}", house);
-//
-//            return new RedirectView("/house");
-//        }
-//        return new RedirectView("/house/" + tempId);
-//    }
-
+    //집 여러개 list로 받아올때
     @ResponseBody
     @GetMapping("/house")
     public List<House> getHouseList() {
-        // HouseService를 이용해서 house 목록을 조회
         HouseService HS = new HouseService(houseRepository);
         return HS.getHouseList();
     }
 
+    //집 하나 조회
     @ResponseBody
     @GetMapping("/house/{houseId}")
-    public ResponseEntity<House> getHouse(@PathVariable Long houseId) {
-        // HouseService를 이용해서 house를 조회
-        HouseService HS = new HouseService(houseRepository);
-        House findHouse = HS.getHouse(houseId);
-        if(findHouse == null) {
+    public ResponseEntity<HouseResponseDto> getHouse(@PathVariable Long houseId) {
+
+        House house = houseRepository.findById(houseId).orElse(null);
+        if(house == null) {
             log.info("집 정보 없음. houseId: {}", houseId);
             return ResponseEntity.status(HttpStatus.GONE).body(null);
         }
-        return ResponseEntity.status(HttpStatus.OK).body(findHouse);
+        Users owner = usersRepository.findById(house.getOwner().getId()).orElse(null);
+        Users customer = usersRepository.findById(house.getCustomer().getId()).orElse(null);
+
+        HouseResponseDto houseResponseDto=HouseResponseDto.builder()
+                .houseId(house.getHouseId())
+                .ownerId(owner.getId())
+                .customerId(customer.getId())
+                .title(house.getTitle())
+                .description(house.getDescription())
+                .repair(house.getRepair())
+                .repairPhotoUrl(house.getRepairPhotoUrl())
+                .stayDate(house.getStayDate())
+                .area(house.getArea())
+                .detailLoc(house.getDetailLoc())
+                .gate(house.getGate())
+                .isMatch(house.isMatch())
+                .isApply(house.isApply())
+                .isMyHouse(house.isMyHouse())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(houseResponseDto);
+
     }
 
 
     //정보 없으면 요청 못하도록 프론트한데 요구해야 겠음.
     @ResponseBody
     @PutMapping("/house/{houseId}")
-    public RedirectView updateHouse(@PathVariable Long houseId, @RequestBody HouseRequestDto house) {
+    public RedirectView updateHouse(@PathVariable Long houseId, @RequestBody HousePutReq house) {
         HouseService HS = new HouseService(houseRepository);
         // HouseService를 이용해서 house를 수정
         HS.updateHouse(houseId, house);
