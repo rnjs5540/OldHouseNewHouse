@@ -1,4 +1,4 @@
-# 헌집줄게 새집다오 README
+![image-1](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/f5d78540-4e51-412f-be78-dddab0113858)# 헌집줄게 새집다오 README
 
 <br>
 
@@ -111,7 +111,8 @@
 
 | 초기화면                 |
 | ------------------------ |
-| ![alt text](image-1.png) |
+|  ![image-1](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/4b47f3ca-97f2-4e2d-bf80-b482f75f2e74)
+|
 
 <br>
 
@@ -122,7 +123,8 @@
 
 | 회원가입/로그인        |
 | ---------------------- |
-| ![alt text](image.png) |
+| |![image](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/d75ac813-5ac7-4503-8080-6d6292f8cbee)
+
 
 <br>
 
@@ -132,7 +134,8 @@
 - 자신이 신청한 집의 정보가 보입니다.
 - 차후 본인의 정보를 변경할 수도 있습니다.
 
-![alt text](image-3.png)|
+![image-3](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/fc55b1e2-3b95-4370-8a83-e675712c6a96)
+|
 
 <br>
 
@@ -142,7 +145,8 @@
 - 사용자가 제출하면 해당 정보가 백엔드 서버에 전달됨
 - 사용자가 희망하면 신청서 제출 철회가 가능합니다.
 
-![alt text](image-4.png)|
+![image-4](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/bb6bf3d8-ef2e-46a6-a80a-51c85f664770)
+|
 
 <br>
 
@@ -150,11 +154,13 @@
 
 #### 1. 집주인 입장
 
-| ![alt text](image-5.png) |
+|  ![image-5](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/5c7c08d3-6f57-46f3-8ded-4f63a33c92c1)
+|
 
 #### 2. 사용자 입장
 
-| ![alt text](image-6.png)|
+| ![image-6](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/7cb7ca58-bb13-4b24-8dd1-6f2310d50374)
+|
 
 <br>
 
