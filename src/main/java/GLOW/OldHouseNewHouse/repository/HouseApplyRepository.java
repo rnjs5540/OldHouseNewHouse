@@ -12,3 +12,4 @@ public interface HouseApplyRepository extends JpaRepository<HouseApply, Long> {
 
 }
 
+

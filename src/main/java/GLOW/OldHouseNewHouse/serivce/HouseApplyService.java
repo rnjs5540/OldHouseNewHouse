@@ -70,3 +70,4 @@ public class HouseApplyService {
         house.setUser(usersRepository.findById(9999999999999999L).orElse(null));
     }
 }
+

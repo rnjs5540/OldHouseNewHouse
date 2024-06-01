@@ -24,3 +24,4 @@ public class HouseRequestDto {
     private String detailLoc;
     private Gate gate;
 }
+

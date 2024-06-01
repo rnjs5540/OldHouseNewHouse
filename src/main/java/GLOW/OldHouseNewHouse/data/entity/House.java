@@ -13,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class House {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

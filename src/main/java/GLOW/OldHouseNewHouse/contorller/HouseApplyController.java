@@ -51,6 +51,7 @@ public class HouseApplyController {
         return new RedirectView("/house/" + tempId);
     }
 
+
     @GetMapping("/{applyId}")
     public HouseApplyResponseDto getHouseApply(@PathVariable Long applyId) {
         HouseApply houseApply = houseApplyService.getHouseApply(applyId);

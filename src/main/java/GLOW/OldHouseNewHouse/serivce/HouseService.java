@@ -90,3 +90,4 @@ public class HouseService {
         houseRepository.deleteById(houseId);
     }
 }
+

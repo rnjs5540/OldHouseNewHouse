@@ -11,3 +11,4 @@ public class HouseApplyRequestDto {
     private String applyReason;
 }
 
+
