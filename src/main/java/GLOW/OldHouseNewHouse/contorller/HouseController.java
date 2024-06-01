@@ -73,7 +73,7 @@ public class HouseController {
         Users customer = usersRepository.findById(house.getCustomer().getId()).orElse(null);
 
         HouseResponseDto houseResponseDto=HouseResponseDto.builder()
-                .houseId(house.getHouseId())
+                .houseId(house.getId())
                 .ownerId(owner.getId())
                 .customerId(customer.getId())
                 .title(house.getTitle())

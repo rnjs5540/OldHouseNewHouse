@@ -7,8 +7,7 @@ import lombok.Getter;
 @Getter
 public class HouseApplyRequestDto {
     private Long houseId;
-    private Long userId;
+    private Long ownerId;
     private String applyReason;
-    private String applyPhotoUrl;
 }
 

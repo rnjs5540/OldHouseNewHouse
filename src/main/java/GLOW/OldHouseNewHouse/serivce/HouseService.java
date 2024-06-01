@@ -22,7 +22,7 @@ public class HouseService {
 
         House save = houseRepository.save(house);
         // 생성된 엔티티를 데이터베이스에 저장
-        return save.getHouseId();
+        return save.getId();
     }
 
     public List<House> getHouseList() {
