@@ -1,11 +1,11 @@
 package GLOW.OldHouseNewHouse.repository;
 
-import GLOW.OldHouseNewHouse.data.entity.Users;
+import GLOW.OldHouseNewHouse.Data.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users,Long> {
+public interface UserRepository extends JpaRepository<User,Long> {
 
 }

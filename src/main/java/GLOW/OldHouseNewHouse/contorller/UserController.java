@@ -1,7 +1,7 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.UserPatchReq;
-import GLOW.OldHouseNewHouse.data.dto.user.res.UserGetRes;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.UserPatchReq;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Res.UserGetRes;
 import GLOW.OldHouseNewHouse.serivce.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

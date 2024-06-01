@@ -1,6 +1,6 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.data.dto.Auth.Res.AuthGetLoginRes;
+import GLOW.OldHouseNewHouse.Data.Dto.Auth.Res.AuthGetLoginRes;
 import GLOW.OldHouseNewHouse.serivce.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +17,9 @@ public class AuthContorller {
 
     private final AuthService authService;
 
+    @ResponseBody
     @GetMapping("/login")
-    public ResponseEntity<AuthGetLoginRes> kakaologin(String code) throws IOException {
+    public ResponseEntity<AuthGetLoginRes> kakaologin(@RequestParam("code") String code) throws IOException {
         return authService.login(code);
     }
 

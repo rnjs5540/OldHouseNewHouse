@@ -1,7 +1,7 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
-import GLOW.OldHouseNewHouse.data.entity.House;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
 import GLOW.OldHouseNewHouse.serivce.HouseService;
 import lombok.extern.slf4j.Slf4j;

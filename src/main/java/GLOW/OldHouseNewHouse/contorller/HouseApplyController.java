@@ -1,11 +1,12 @@
 package GLOW.OldHouseNewHouse.contorller;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseApplyRequestDto;
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseApplyResponseDto;
-import GLOW.OldHouseNewHouse.data.entity.House;
-import GLOW.OldHouseNewHouse.data.entity.HouseApply;
-import GLOW.OldHouseNewHouse.data.entity.Users;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseApplyRequestDto;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseApplyResponseDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
+import GLOW.OldHouseNewHouse.Data.Entity.HouseApply;
+import GLOW.OldHouseNewHouse.Data.Entity.User;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
+import GLOW.OldHouseNewHouse.repository.UserRepository;
 import GLOW.OldHouseNewHouse.serivce.HouseApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class HouseApplyController {
     @Autowired
     HouseRepository houseRepository;
     @Autowired
-    GLOW.OldHouseNewHouse.repository.UsersRepository usersRepository;
+    UserRepository userRepository;
     @Autowired
     HouseApplyService houseApplyService;
 
@@ -27,7 +28,7 @@ public class HouseApplyController {
     public RedirectView addHouseApply(@RequestBody HouseApplyRequestDto houseApplyRequestDto) {
         HouseApply houseApply = HouseApply.builder()
                 .house(houseRepository.findById(houseApplyRequestDto.getHouseId()).orElse(null))
-                .users(usersRepository.findById(houseApplyRequestDto.getUserId()).orElse(null))
+                .user(userRepository.findById(houseApplyRequestDto.getUserId()).orElse(null))
                 .applyReason(houseApplyRequestDto.getApplyReason())
                 .appealPhotoUrl(houseApplyRequestDto.getAppealPhotoUrl())
                 .build();
@@ -40,13 +41,13 @@ public class HouseApplyController {
     public HouseApplyResponseDto getHouseApply(@PathVariable Long applyId) {
         HouseApply houseApply = houseApplyService.getHouseApply(applyId);
         House house = houseRepository.findById(applyId).orElse(null);
-        Users owner = usersRepository.findById(house.getOwner().getId()).orElse(null);
-        Users users = usersRepository.findById(houseApply.getHouse().getUser().getId()).orElse(null);
+        User owner = userRepository.findById(house.getOwnerId()).orElse(null);
+        User user = userRepository.findById(houseApply.getHouse().getUserId()).orElse(null);
 
         return HouseApplyResponseDto.builder()
                 .ownerName(owner.getName())
-                .userName(users.getName())
-                .userAge(users.getAge())
+                .userName(user.getName())
+                .userAge(user.getAge())
                 .applyReason(houseApply.getApplyReason())
                 .applyPhotoUrl(houseApply.getAppealPhotoUrl())
                 .houseId(houseApply.getHouse().getHouseId())

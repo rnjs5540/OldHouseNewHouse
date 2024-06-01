@@ -1,10 +1,13 @@
-package GLOW.OldHouseNewHouse.data.entity;
+package GLOW.OldHouseNewHouse.Data.Entity;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
-import GLOW.OldHouseNewHouse.data.entity.Users;
-import jakarta.persistence.*;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 import lombok.Setter;
 
 @Entity
@@ -17,13 +20,11 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long houseId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", nullable = false)
-    private Users owner;
+    @Column(name = "owner_id", nullable = false)
+    private Long ownerId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private Users user;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "repair", nullable = false)
     private String repair;
@@ -49,15 +50,16 @@ public class House {
     @Column(name = "detail_loc", nullable = false)
     private String detailLoc;
 
-    @Column(name = "is_okay", nullable = true)
+    @Column(name = "is_okay", nullable = false)
     private Boolean isOkay;
 
     @Column(name = "gate", nullable = false)
     private HouseRequestDto.Gate gate;
 
-    public House(Users owner, String repair, String repairPhotoUrl, Long stayDate, Double area, String description,
+    public House(Long ownerId, Long userId, String repair, String repairPhotoUrl, Long stayDate, Double area, String description,
                  Long latitude, Long longitude, String detailLoc, HouseRequestDto.Gate gate){
-        this.owner = owner;
+        this.ownerId = ownerId;
+        this.userId = userId;
         this.repair = repair;
         this.repairPhotoUrl = repairPhotoUrl;
         this.stayDate = stayDate;

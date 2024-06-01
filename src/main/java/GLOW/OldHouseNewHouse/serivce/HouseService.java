@@ -1,13 +1,12 @@
 package GLOW.OldHouseNewHouse.serivce;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
-import GLOW.OldHouseNewHouse.data.entity.House;
+import GLOW.OldHouseNewHouse.Data.Dto.User.Req.HouseRequestDto;
+import GLOW.OldHouseNewHouse.Data.Entity.House;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-
 
 @Service
 public class HouseService {
