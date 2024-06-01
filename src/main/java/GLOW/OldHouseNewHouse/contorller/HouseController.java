@@ -1,6 +1,7 @@
 package GLOW.OldHouseNewHouse.contorller;
 
 import GLOW.OldHouseNewHouse.data.dto.user.req.HousePostReq;
+import GLOW.OldHouseNewHouse.data.dto.user.req.HousePutReq;
 import GLOW.OldHouseNewHouse.data.dto.user.res.HouseResponseDto;
 import GLOW.OldHouseNewHouse.data.dto.user.res.UserGetRes;
 import GLOW.OldHouseNewHouse.data.entity.House;
@@ -96,7 +97,7 @@ public class HouseController {
     //정보 없으면 요청 못하도록 프론트한데 요구해야 겠음.
     @ResponseBody
     @PutMapping("/house/{houseId}")
-    public RedirectView updateHouse(@PathVariable Long houseId, @RequestBody HousePostReq house) {
+    public RedirectView updateHouse(@PathVariable Long houseId, @RequestBody HousePutReq house) {
         HouseService HS = new HouseService(houseRepository);
         // HouseService를 이용해서 house를 수정
         HS.updateHouse(houseId, house);

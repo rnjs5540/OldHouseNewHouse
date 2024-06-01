@@ -1,6 +1,7 @@
 package GLOW.OldHouseNewHouse.serivce;
 
 import GLOW.OldHouseNewHouse.data.dto.user.req.HousePostReq;
+import GLOW.OldHouseNewHouse.data.dto.user.req.HousePutReq;
 import GLOW.OldHouseNewHouse.data.entity.House;
 import GLOW.OldHouseNewHouse.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,11 @@ public class HouseService {
 
 
     @Transactional
-    public void updateHouse(Long houseId, HousePostReq house) {
+    public void updateHouse(Long houseId, HousePutReq house) {
         House findHouse = houseRepository.findById(houseId).orElse(null);
         if (findHouse == null) {
             return;
         }
-
-
 
         // 엔티티를 직접 업데이트
         if (house.getRepair() != null) {
