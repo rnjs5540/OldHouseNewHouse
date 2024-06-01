@@ -17,8 +17,9 @@ public class AuthContorller {
 
     private final AuthService authService;
 
+    @ResponseBody
     @GetMapping("/login")
-    public ResponseEntity<AuthGetLoginRes> kakaologin(String code) throws IOException {
+    public ResponseEntity<AuthGetLoginRes> kakaologin(@RequestParam("code") String code) throws IOException {
         return authService.login(code);
     }
 
