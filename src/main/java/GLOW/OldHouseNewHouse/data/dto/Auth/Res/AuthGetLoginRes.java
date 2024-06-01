@@ -10,4 +10,6 @@ public class AuthGetLoginRes {
     private String accessToken;
 
     private String refreshToken;
+
+    private Long id;
 }

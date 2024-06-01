@@ -43,7 +43,7 @@ public class AuthService {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         String accessToken = jwtTokenProvider.createAccessToken(users.getId());
-        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, users.getRefreshToken()), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, users.getRefreshToken(),Long.valueOf(authentication.getName())), HttpStatus.OK);
     }
 
     public ResponseEntity<HttpStatus> logout(Authentication authentication){
@@ -79,7 +79,7 @@ public class AuthService {
 
         usersRepository.save(users);
 
-        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, refreshToken), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, refreshToken,id), HttpStatus.OK);
     }
 
     private ResponseEntity<AuthGetLoginRes> register(String kakaoAccessToken,Long id) throws IOException {
@@ -97,7 +97,7 @@ public class AuthService {
 
         usersRepository.save(users);
 
-        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, refreshToken), HttpStatus.CREATED);
+        return new ResponseEntity<>(new AuthGetLoginRes(accessToken, refreshToken,id), HttpStatus.CREATED);
     }
 
     private JsonElement getJsonElementByAccessToken(String token) throws IOException {

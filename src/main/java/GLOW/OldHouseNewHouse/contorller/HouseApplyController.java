@@ -29,7 +29,7 @@ public class HouseApplyController {
                 .house(houseRepository.findById(houseApplyRequestDto.getHouseId()).orElse(null))
                 .users(usersRepository.findById(houseApplyRequestDto.getUserId()).orElse(null))
                 .applyReason(houseApplyRequestDto.getApplyReason())
-                .appealPhotoUrl(houseApplyRequestDto.getAppealPhotoUrl())
+                .appealPhotoUrl(houseApplyRequestDto.getApplyPhotoUrl())
                 .build();
 
         Long tempId = houseApplyService.saveApplyForm(houseApply);
@@ -41,7 +41,7 @@ public class HouseApplyController {
         HouseApply houseApply = houseApplyService.getHouseApply(applyId);
         House house = houseRepository.findById(applyId).orElse(null);
         Users owner = usersRepository.findById(house.getOwner().getId()).orElse(null);
-        Users users = usersRepository.findById(houseApply.getHouse().getUser().getId()).orElse(null);
+        Users users = usersRepository.findById(houseApply.getHouse().getCustomer().getId()).orElse(null);
 
         return HouseApplyResponseDto.builder()
                 .ownerName(owner.getName())

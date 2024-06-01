@@ -1,15 +1,14 @@
 package GLOW.OldHouseNewHouse.data.entity;
 
-import GLOW.OldHouseNewHouse.data.dto.user.req.HouseRequestDto;
-import GLOW.OldHouseNewHouse.data.entity.Users;
+import GLOW.OldHouseNewHouse.Enum.Gate;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class House {
 
@@ -22,8 +21,11 @@ public class House {
     private Users owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private Users user;
+    @JoinColumn(name = "customer_id")
+    private Users customer;
+
+    @Column(name = "title",nullable = false)
+    private String title;
 
     @Column(name = "repair", nullable = false)
     private String repair;
@@ -31,41 +33,28 @@ public class House {
     @Column(name = "repair_photo_url", nullable = false)
     private String repairPhotoUrl;
 
+    @Column(name = "description", nullable = false)
+    private String description;
+
     @Column(name = "stay_date", nullable = false)
     private Long stayDate;
 
     @Column(name = "area", nullable = false)
     private Double area;
 
-    @Column(name = "description", nullable = false)
-    private String description;
-
-    @Column(name = "latitude", nullable = false)
-    private Long latitude;
-
-    @Column(name = "longitude", nullable = false)
-    private Long longitude;
-
     @Column(name = "detail_loc", nullable = false)
     private String detailLoc;
 
-    @Column(name = "is_okay", nullable = true)
-    private Boolean isOkay;
-
     @Column(name = "gate", nullable = false)
-    private HouseRequestDto.Gate gate;
+    private Gate gate;
 
-    public House(Users owner, String repair, String repairPhotoUrl, Long stayDate, Double area, String description,
-                 Long latitude, Long longitude, String detailLoc, HouseRequestDto.Gate gate){
-        this.owner = owner;
-        this.repair = repair;
-        this.repairPhotoUrl = repairPhotoUrl;
-        this.stayDate = stayDate;
-        this.area = area;
-        this.description = description;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.detailLoc = detailLoc;
-        this.gate = gate;
-    }
+    @Column(name = "is_match")
+    private boolean isMatch;
+
+    @Column(name = "is_apply")
+    private boolean isApply;
+
+    @Column(name = "is_my_house")
+    private boolean isMyHouse;
+
 }
