@@ -9,6 +9,6 @@ public class HouseApplyRequestDto {
     private Long houseId;
     private Long userId;
     private String applyReason;
-    private String appealPhotoUrl;
+    private String applyPhotoUrl;
 }
 
