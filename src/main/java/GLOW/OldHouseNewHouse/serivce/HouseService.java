@@ -31,7 +31,7 @@ public class HouseService {
 
         House save = houseRepository.save(registerHouse);
         // 생성된 엔티티를 데이터베이스에 저장
-        return save.getHouseId();
+        return save.getId();
     }
 
     public List<House> getHouseList() {
@@ -90,3 +90,4 @@ public class HouseService {
         houseRepository.deleteById(houseId);
     }
 }
+

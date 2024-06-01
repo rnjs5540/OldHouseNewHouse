@@ -77,6 +77,7 @@ public class HouseController {
         return new RedirectView("/house/" + houseId);
     }
 
+
     @ResponseBody
     @DeleteMapping("/house/{houseId}")
     public ResponseEntity<String> deleteHouse(@PathVariable Long houseId) {
