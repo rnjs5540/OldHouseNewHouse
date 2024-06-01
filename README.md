@@ -1,4 +1,4 @@
-![image-1](https://github.com/rnjs5540/OldHouseNewHouse/assets/127917642/f5d78540-4e51-412f-be78-dddab0113858)# 헌집줄게 새집다오 README
+# 헌집줄게 새집다오 README
 
 <br>
 
