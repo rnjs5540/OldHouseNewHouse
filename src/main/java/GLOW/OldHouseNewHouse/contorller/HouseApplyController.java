@@ -29,7 +29,7 @@ public class HouseApplyController {
                 .house(houseRepository.findById(houseApplyRequestDto.getHouseId()).orElse(null))
                 .users(usersRepository.findById(houseApplyRequestDto.getUserId()).orElse(null))
                 .applyReason(houseApplyRequestDto.getApplyReason())
-                .appealPhotoUrl(houseApplyRequestDto.getAppealPhotoUrl())
+                .appealPhotoUrl(houseApplyRequestDto.getApplyPhotoUrl())
                 .build();
 
         Long tempId = houseApplyService.saveApplyForm(houseApply);
